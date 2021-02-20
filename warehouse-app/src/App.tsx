@@ -3,7 +3,7 @@ import './App.css';
 import WarehousePage from './pages/Warehouse';
 
 function App() {
-  return <WarehousePage title="The Warehouse" />
+  return <WarehousePage />
 }
 
 export default App;

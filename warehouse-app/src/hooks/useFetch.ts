@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ApiPath } from "../domain/paths";
 
 const useFetch = <T>(fetchUrl: ApiPath) => {
@@ -6,16 +6,20 @@ const useFetch = <T>(fetchUrl: ApiPath) => {
   const [response, setResponse] = useState<T[]>([]);
   const [error, setError] = useState<string>();
 
-  useEffect(() => {
+  const reFetch = useCallback(() => {
     setLoading(true);
     fetch(fetchUrl)
       .then((d) => d.json() as Promise<T[]>)
       .then(setResponse)
       .catch(setError)
       .finally(() => setLoading(false));
-  }, [setLoading, fetchUrl]);
+  }, [fetchUrl]);
 
-  return { loading, response, error };
+  useEffect(() => {
+    reFetch()
+  }, [reFetch]);
+
+  return { loading, response, error, reFetch };
 };
 
 export default useFetch;

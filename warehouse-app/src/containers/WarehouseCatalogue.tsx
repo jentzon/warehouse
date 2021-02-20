@@ -2,37 +2,51 @@ import { inventoryUrl, productListUrl } from "../domain/paths";
 import useFetch from "../hooks/useFetch";
 import { ArticleEntry } from "../models/Article";
 import { Product } from "../models/Product";
+import { NavigationItem } from "../types";
 import Inventory from "./Inventory";
-import ProductList from "./Products";
+import ProductList from "./ProductsList";
 
+// TODO: Error component
 type Props = {
-  selectedList: "inventory" | "products"
-}
+  selectedList: NavigationItem;
+};
 
 const WarehouseCatalogue: React.FC<Props> = ({ selectedList }) => {
   const {
-    loading: loadingProducts,
     error: productsError,
     response: products,
+    reFetch: reFetchProducts,
   } = useFetch<Product>(productListUrl);
   const {
-    loading: loadingInventory,
     error: inventoryError,
     response: inventory,
+    reFetch: reFetchInventory,
   } = useFetch<ArticleEntry>(inventoryUrl);
-
-  const isLoading = loadingProducts || loadingInventory;
-  const hasErrors = !!productsError || !!inventoryError;
 
   return (
     <>
-      {!isLoading && !hasErrors && (
-        <>
-          {selectedList === 'products' && <ProductList products={products} />}
-          {selectedList === 'inventory' && <Inventory inventory={inventory} />}
-          
-        </>
-      )}
+      <>
+        {selectedList === "products" && (
+          <>
+          {productsError && (<h3>Could not load products.</h3>)}
+          <ProductList
+            inventory={inventory}
+            reFetchProducts={reFetchProducts}
+            reFetchInventory={reFetchInventory}
+            products={products}
+          />
+          </>
+        )}
+        {selectedList === "inventory" && (
+          <>
+          {inventoryError && (<h3>Could not load inventory.</h3>)}
+          <Inventory
+            reFecthInventory={reFetchInventory}
+            inventory={inventory}
+          />
+          </>
+        )}
+      </>
     </>
   );
 };
