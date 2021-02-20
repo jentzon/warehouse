@@ -21,8 +21,10 @@
   },
   "dependencies": {
     "@types/body-parser": "^1.19.0",
+    "@types/cors": "^2.8.10",
     "@types/ramda": "^0.27.38",
     "@types/uuid": "^8.3.0",
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "ramda": "^0.27.1",
     "uuid": "^8.3.2"
