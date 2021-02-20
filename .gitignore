@@ -1,3 +1,6 @@
+# Project specific
+compiled/
+
 # Logs
 logs
 *.log
