@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "compiled",
+    "strict": true,
+  },
+  "lib": ["es2019"],
+  "include": ["src"]
+}
