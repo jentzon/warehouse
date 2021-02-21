@@ -1,5 +1,6 @@
 import Typography from "@material-ui/core/Typography";
 import { find } from "ramda";
+import { ArticleEntry } from "../models/Article";
 
 import { Product } from "../models/Product";
 import { Inventory } from "../types";
@@ -13,20 +14,26 @@ const ProductContaningArticlesList: React.FC<Props> = ({
   product,
   inventory,
 }) => {
-  const findArticleName = (articleId: number): string =>
-    find((article) => article.art_id === articleId, inventory)?.name ||
-    "" + articleId;
+  const findArticleInInventory = (
+    articleId: number
+  ): ArticleEntry | undefined =>
+    find((article) => article.art_id === articleId, inventory);
 
   return (
     <Typography variant="body2" component="h5">
       Contains articles:
       <ul>
-        {product.contain_articles.map((article) => (
-          <li key={article.art_id}>
-            <b>{article.amount_of}</b> pieces of:{" "}
-            {findArticleName(article.art_id)} (ID: {article.art_id})
-          </li>
-        ))}
+        {product.contain_articles.map((articleInProduct) => {
+          const articleInInventory = findArticleInInventory(articleInProduct.art_id);
+          const articleName = articleInInventory?.name || "Unknown";
+          const inStock = articleInInventory?.stock || 0;
+          return (
+            <li key={articleInProduct.art_id}>
+              <b>{articleInProduct.amount_of}</b> pieces of: {articleName} (ID:{" "}
+              {articleInProduct.art_id}) - {inStock} in inventory
+            </li>
+          );
+        })}
       </ul>
     </Typography>
   );

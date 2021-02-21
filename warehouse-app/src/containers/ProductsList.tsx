@@ -59,12 +59,13 @@ const ProductList: React.FC<Props> = ({
       ))}
       <SimpleToast
         onClose={closeToast}
-        open={success || sellError}
-        message={
-          success
-            ? "Product sold. Articles removed from inventory."
-            : "Sorry! Could not sell product."
-        }
+        open={success}
+        message="Product sold. Articles removed from inventory."
+      />
+      <SimpleToast
+        onClose={closeToast}
+        open={sellError}
+        message="Sorry! Could not sell product."
       />
     </>
   );
