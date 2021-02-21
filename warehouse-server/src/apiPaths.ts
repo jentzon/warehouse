@@ -5,26 +5,28 @@ import { WarehouseDB } from "./WarehouseDB";
 
 const inMemoryWarehouseDB = new WarehouseDB();
 
-// Simple error handling for all paths
-// Extract into functions that takes (req, res)
-// Limitation - Very simple error handling.
 export const applyApiPaths = (server: Application): void => {
-  // TODO: Separate inventory and products.
-
+  // ---- INVENTORY
   server.post("/inventory/insert", (req, res) => {
     const requestedInventory = req.body["inventory"];
 
     try {
       const newArticles = articlesFromRequestBody(requestedInventory);
-      const updatedInventory = inMemoryWarehouseDB.addArticles(newArticles);
+      inMemoryWarehouseDB.addArticles(newArticles);
 
-      const newInventory = Array.from(updatedInventory.values());
+      const newInventory = Array.from(inMemoryWarehouseDB.articles.values());
       res.status(200).send(newInventory);
     } catch (_) {
       res.status(500).send();
     }
   });
 
+  server.get("/inventory/list", (_, res) => {
+    const articles = Array.from(inMemoryWarehouseDB.articles.values());
+    res.status(200).send(articles);
+  });
+
+  // ---- PRODUCTS
   server.post("/products/insert", (req, res) => {
     const requestedProducts = req.body["products"];
 
@@ -37,11 +39,6 @@ export const applyApiPaths = (server: Application): void => {
     } catch (_) {
       res.status(500).send();
     }
-  });
-
-  server.get("/inventory/list", (_, res) => {
-    const articles = Array.from(inMemoryWarehouseDB.articles.values());
-    res.status(200).send(articles);
   });
 
   server.get("/products/list", (_, res) => {

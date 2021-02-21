@@ -19,7 +19,8 @@ export const numberAvailableToSell = (
       inventory
     );
     if (articleInInventory && articleInInventory.stock > 0) {
-      // TODO: Naming...
+
+      // Check if the amount needed of current article is available in inventory.
       const availability = Math.floor(
         articleInInventory.stock / article.amount_of
       );
@@ -29,7 +30,6 @@ export const numberAvailableToSell = (
     }
   }, neededArticles);
 
-  console.log(`AVAILABLE: ${JSON.stringify(availabilityList)}`);
-
+  // Return the smallest value in the list.
   return Math.min.apply(Math, availabilityList);
 };

@@ -2,8 +2,9 @@ import { ProductArticle } from "./Article";
 import { map } from 'ramda';
 
 export type Product = {
-  name: string,
-  contain_articles: ProductArticle[]
+  name: string;
+  contain_articles: ProductArticle[];
+  price?: number;
 }
 
 const extractProductArticles = (productArticles: any[]): ProductArticle[] => 

@@ -1,7 +1,8 @@
-import { CardContent, makeStyles } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
-import { ArticleEntry } from "../models/Article";
+import { CardContent, makeStyles } from "@material-ui/core";
+
+import { ArticleEntry } from "../../models/Article";
 
 type Props = {
   article: ArticleEntry;
@@ -15,11 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-// TODO: Extract so that article names can be visible.
-// TODO: Badge for how many can be sold
-const InventoryListItem: React.FC<Props> = ({
-  article,
-}) => {
+const InventoryListItem: React.FC<Props> = ({ article }) => {
   const classes = useStyles();
 
   return (

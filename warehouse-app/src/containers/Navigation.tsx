@@ -1,12 +1,12 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import DescriptionIcon from "@material-ui/icons/Description";
 import SettingsIcon from "@material-ui/icons/Settings";
 import Card from "@material-ui/core/Card";
+import { makeStyles } from "@material-ui/core";
 
 type Props = {
   navigationValue: number;
@@ -54,7 +54,7 @@ const NavigationBar: React.FC<Props> = ({
           icon={<DescriptionIcon className={classes.icon} />}
         />
         <BottomNavigationAction
-          label="Configuration"
+          label="Data upload"
           icon={<SettingsIcon className={classes.icon} />}
         />
       </BottomNavigation>
