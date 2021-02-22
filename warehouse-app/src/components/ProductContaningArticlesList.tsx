@@ -1,9 +1,11 @@
 import Typography from "@material-ui/core/Typography";
 import { find } from "ramda";
+import { useMemo } from "react";
 import { ArticleEntry } from "../models/Article";
 
 import { Product } from "../models/Product";
 import { Inventory } from "../types";
+import ProductArticleListItem from "./ProductArticleListItem";
 
 type Props = {
   product: Product;
@@ -24,14 +26,18 @@ const ProductContaningArticlesList: React.FC<Props> = ({
       Contains articles:
       <ul>
         {product.contain_articles.map((articleInProduct) => {
-          const articleInInventory = findArticleInInventory(articleInProduct.art_id);
+          const articleInInventory = findArticleInInventory(
+            articleInProduct.art_id
+          );
           const articleName = articleInInventory?.name || "Unknown";
           const inStock = articleInInventory?.stock || 0;
           return (
-            <li key={articleInProduct.art_id}>
-              <b>{articleInProduct.amount_of}</b> pieces of: {articleName} (ID:{" "}
-              {articleInProduct.art_id}) - {inStock} in inventory
-            </li>
+            <ProductArticleListItem
+              productArticleId={articleInProduct.art_id}
+              productContainsAmount={articleInProduct.amount_of}
+              articleNameInInventory={articleName}
+              inventoryStockValue={inStock}
+            />
           );
         })}
       </ul>

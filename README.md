@@ -33,11 +33,12 @@ Uses:
 - Basic navigation. Could be extracted further or simply use React Router with routes etc, reloading the page discards any navigation done.
 - You can always style more, and more, and more... ;)
 - Tests! Love them, but have limited them down to a bare minimum to provide more code and implementation of solutions for you to check.
+- Some performance improvements has been made, but there is always more to do (or not(!)). No need for performance optimization when there is no problem, although. One example is to pass in "simple" props to smaller components in order to use the Reacts equality evaluation more efficient, also to better use useMemo etc. for increased calculation performance (or rather, not calculate more then needed).
 
 ### Notes:
 - JSON input is in "stringified" form. Would have loved to get an good JSON text field with validation and all in place.
 - @material-ui/core/Snackbar sometimes throws an error due to underlying implementation.
-- The product list item takes the inventory data to look up containing article names. This should rather be done by combining this info in parent component and providing "ready-to-use" objects. Gotta save som refactoring!
+- The product list item takes the inventory data to look up containing article names. This should rather be done by combining this info in parent component and providing "ready-to-use" objects. Gotta save som refactoring! This mapping could be done in the "WarehouseCatalogue" container and passed down. Eg. the findArticleInInventory function should be used where inventory is fetched and article info should be tied to products there directly.
 - Styling is provided within each component and not kept separate.
 
 
