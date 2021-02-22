@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "92854f5a-9ed2-4686-8226-4489509a0435",
+		"name": "IKEA Warehouse",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product Insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"products\": [\n    {\n      \"name\": \"Dining Chair\",\n      \"contain_articles\": [\n        {\n          \"art_id\": \"1\",\n          \"amount_of\": \"4\"\n        },\n        {\n          \"art_id\": \"2\",\n          \"amount_of\": \"8\"\n        },\n        {\n          \"art_id\": \"3\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Dinning Table\",\n      \"contain_articles\": [\n        {\n          \"art_id\": \"1\",\n          \"amount_of\": \"4\"\n        },\n        {\n          \"art_id\": \"2\",\n          \"amount_of\": \"8\"\n        },\n        {\n          \"art_id\": \"4\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3050/products/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"products",
+						"insert"
+					]
+				},
+				"description": "Inserts products into DB."
+			},
+			"response": []
+		},
+		{
+			"name": "Article Insert",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"inventory\": [\n    {\n      \"art_id\": \"1\",\n      \"name\": \"leg\",\n      \"stock\": \"12\"\n    },\n    {\n      \"art_id\": \"2\",\n      \"name\": \"screw\",\n      \"stock\": \"17\"\n    },\n    {\n      \"art_id\": \"3\",\n      \"name\": \"seat\",\n      \"stock\": \"2\"\n    },\n    {\n      \"art_id\": \"4\",\n      \"name\": \"table top\",\n      \"stock\": \"1\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3050/inventory/insert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"inventory",
+						"insert"
+					]
+				},
+				"description": "Inserts articles into DB."
+			},
+			"response": []
+		},
+		{
+			"name": "List Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"products\": [\n    {\n      \"name\": \"Dining Chair\",\n      \"contain_articles\": [\n        {\n          \"art_id\": \"1\",\n          \"amount_of\": \"4\"\n        },\n        {\n          \"art_id\": \"2\",\n          \"amount_of\": \"8\"\n        },\n        {\n          \"art_id\": \"3\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    },\n    {\n      \"name\": \"Dinning Table\",\n      \"contain_articles\": [\n        {\n          \"art_id\": \"1\",\n          \"amount_of\": \"4\"\n        },\n        {\n          \"art_id\": \"2\",\n          \"amount_of\": \"8\"\n        },\n        {\n          \"art_id\": \"4\",\n          \"amount_of\": \"1\"\n        }\n      ]\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3050/products/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"products",
+						"list"
+					]
+				},
+				"description": "Lists all available products."
+			},
+			"response": []
+		},
+		{
+			"name": "Article List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"inventory\": [\n    {\n      \"art_id\": \"1\",\n      \"name\": \"leg\",\n      \"stock\": \"12\"\n    },\n    {\n      \"art_id\": \"2\",\n      \"name\": \"screw\",\n      \"stock\": \"17\"\n    },\n    {\n      \"art_id\": \"3\",\n      \"name\": \"seat\",\n      \"stock\": \"2\"\n    },\n    {\n      \"art_id\": \"4\",\n      \"name\": \"table top\",\n      \"stock\": \"1\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3050/inventory/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"inventory",
+						"list"
+					]
+				},
+				"description": "Lists all articles in DB."
+			},
+			"response": []
+		},
+		{
+			"name": "Withdraw Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productName\": \"Dining Chair\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3050/products/withdraw",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3050",
+					"path": [
+						"products",
+						"withdraw"
+					]
+				},
+				"description": "Removes articles for the wanted product (sell)."
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
