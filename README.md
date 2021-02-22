@@ -56,7 +56,6 @@ Same as for the frontend application
 ### About
 Uses: 
 - ESLint to enforce code style.
-- [Material UI](https://material-ui.com/) for styled components.
 - [RamdaJS](https://ramdajs.com/) for more functional and improved list and object functions
 
 Built with:
