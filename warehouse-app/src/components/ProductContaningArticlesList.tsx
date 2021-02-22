@@ -1,6 +1,5 @@
 import Typography from "@material-ui/core/Typography";
 import { find } from "ramda";
-import { useMemo } from "react";
 import { ArticleEntry } from "../models/Article";
 
 import { Product } from "../models/Product";
