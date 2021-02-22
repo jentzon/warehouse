@@ -9,7 +9,7 @@ const useFetch = <T>(fetchUrl: ApiPath) => {
   const reFetch = useCallback(() => {
     setLoading(true);
     fetch(fetchUrl)
-      .then((d) => d.json() as Promise<T[]>)
+      .then((reponse) => reponse.json() as Promise<T[]>)
       .then(setResponse)
       .catch(setError)
       .finally(() => setLoading(false));
