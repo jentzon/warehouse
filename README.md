@@ -77,6 +77,7 @@ Built with:
 - The server uses an "in memory DB" that lives for as long as the server lives. The products and articles is contained in Maps in an "DB object" (class) which also exposes an API for manipulation. Did not chooses eg. MongoDB for the sake of simplicity. Also, I like operating on collections!
 - The DB replaces products if the name when uploading more is the same as one already existing.
 - The "guard" for not being able to withdraw a product which contaning articles is not enough in inventory is handled in the FE application only.
+- There is a PostMan collection provided to try the API directly, if not through the FE application.
 
 
 ## Versions
